@@ -65,6 +65,18 @@
 #define ATH10K_KEEPALIVE_MAX_IDLE 3895
 #define ATH10K_KEEPALIVE_MAX_UNRESPONSIVE 3900
 
+/* Backports related crap */
+#ifdef STANDALONE_CT
+#ifndef NUM_NL80211_BANDS
+/* So, maybe 4.4 era or so...  This will give compile warnings,
+ * but it should work fine.
+ */
+#define NUM_NL80211_BANDS IEEE80211_NUM_BANDS
+#define CT_PRE_NUM_NL80211_BANDS
+#endif
+#endif
+
+
 struct ath10k;
 
 enum ath10k_bus {

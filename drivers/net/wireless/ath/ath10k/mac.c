@@ -4435,7 +4435,7 @@ void __ath10k_scan_finish(struct ath10k *ar)
 	case ATH10K_SCAN_RUNNING:
 	case ATH10K_SCAN_ABORTING:
 		if (!ar->scan.is_roc) {
-#ifdef STANDALONE_CT
+#if defined STANDALONE_CT && ! defined CT_PRE_NUM_NL80211_BANDS
 			/* LEDE is using latest backports now, needs this new logic. */
 			struct cfg80211_scan_info info = {
 				.aborted = (ar->scan.state ==
